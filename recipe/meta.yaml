@@ -1,19 +1,22 @@
-{% set version = "0.8.3" %}
+{% set name = "flower" %}
+{% set version = "0.9.1" %}
+{% set md5 = "5d191dae0db989b97d9d000133ead843" %}
+{% set build = 0 %}
 
 package:
-    name: flower
+    name: {{ name }}
     version: {{ version }}
 
 source:
-    fn: flower-{{ version }}.tar.gz
-    url: https://pypi.python.org/packages/source/f/flower/flower-{{ version }}.tar.gz
-    md5: 09d4dec422ed6c4a10584b5fce6008d6
+    fn: {{ name }}-{{ version }}.tar.gz
+    url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+    md5: {{ md5 }}
 
 build:
-    number: 0
+    number: {{ build }}
     script: python setup.py install --single-version-externally-managed --record=record.txt
     entry_points:
-    - flower = flower.__main__:main
+        - flower = flower.__main__:main
 
 requirements:
     build:

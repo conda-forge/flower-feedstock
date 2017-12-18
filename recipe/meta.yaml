@@ -33,7 +33,7 @@ requirements:
     - tornado >=4.2.0
     - babel >=1.0
     - pytz
-    - futures # [py27]
+    - futures  # [py27]
 
 test:
   imports:

@@ -50,7 +50,7 @@ test:
     
 about:
     home: https://github.com/mher/flower
-    license: BSD License
+    license: BSD
     summary: Celery Flower
     license_file: LICENSE
 

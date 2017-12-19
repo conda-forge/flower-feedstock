@@ -51,10 +51,11 @@ test:
     
 about:
     home: https://github.com/mher/flower
-    license: BSD
+    license: BSD 3-Clause
     summary: Celery Flower
     license_file: LICENSE
 
 extra:
     recipe-maintainers:
         - kwilcox
+        - ukaratay

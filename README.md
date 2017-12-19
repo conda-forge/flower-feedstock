@@ -3,7 +3,7 @@ About flower
 
 Home: https://github.com/mher/flower
 
-Package license: BSD
+Package license: BSD 3-Clause
 
 Feedstock license: BSD 3-Clause
 

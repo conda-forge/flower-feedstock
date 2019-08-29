@@ -1,6 +1,6 @@
 {% set name = "flower" %}
-{% set version = "0.9.2" %}
-{% set sha256 = "a7a828c2dbea7e9cff1c86d63626f0eeb047b1b1e9a0ee5daad30771fb51e6d0" %}
+{% set version = "0.9.3" %}
+{% set sha256 = "7f45acb297ab7cf3dd40140816143a2588f6938dbd70b8c46b59c7d8d1e93d55" %}
 
 package:
   name: {{ name|lower }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-    number: 1000
+    number: 0
     script: python setup.py install --single-version-externally-managed --record=record.txt
     entry_points:
         - flower = flower.__main__:main
@@ -25,8 +25,11 @@ requirements:
   run:
     - python
     - setuptools
-    - celery >=3.1.0
-    - tornado >=4.2.0
+    - celery>=3.1.0  # [py<37]
+    - celery>=4.3.0  # [py>=37]
+    - tornado>=5.0.0,<6.0.0  # [py<36]
+    - tornado>=5.0.0,<7.0.0  # [py>=36]
+    - humanize==0.5.1
     - babel >=1.0
     - pytz
     - futures  # [py27]
@@ -36,7 +39,6 @@ test:
     - flower
     - flower.api
     - flower.utils
-    - flower.utils.backports
     - flower.views
 
   commands:
@@ -55,3 +57,4 @@ extra:
     recipe-maintainers:
         - kwilcox
         - ukaratay
+        - thebestnom

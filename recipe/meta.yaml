@@ -1,6 +1,6 @@
 {% set name = "flower" %}
-{% set version = "0.9.3" %}
-{% set sha256 = "7f45acb297ab7cf3dd40140816143a2588f6938dbd70b8c46b59c7d8d1e93d55" %}
+{% set version = "0.9.4" %}
+{% set sha256 = "25782840f7ffc25dcf478d94535a2d815448de4aa6c71426be6abfa9ca417448" %}
 
 package:
   name: {{ name|lower }}
@@ -12,10 +12,10 @@ source:
   sha256: {{ sha256 }}
 
 build:
-    number: 0
-    script: python setup.py install --single-version-externally-managed --record=record.txt
-    entry_points:
-        - flower = flower.__main__:main
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record=record.txt
+  entry_points:
+    - flower = flower.__main__:main
 
 requirements:
   build:
@@ -30,7 +30,6 @@ requirements:
     - tornado >=5.0.0,<6.0.0  # [py<36]
     - tornado >=5.0.0,<7.0.0  # [py>=36]
     - humanize >=0.5.1
-    - babel >=1.0
     - pytz
     - futures  # [py27]
 
@@ -43,18 +42,18 @@ test:
 
   commands:
     - flower --help
-    
+
   requires:
     - mock
-    
+
 about:
-    home: https://github.com/mher/flower
-    license: BSD 3-Clause
-    summary: Celery Flower
-    license_file: LICENSE
+  home: https://github.com/mher/flower
+  license: BSD 3-Clause
+  summary: Celery Flower
+  license_file: LICENSE
 
 extra:
-    recipe-maintainers:
-        - kwilcox
-        - ukaratay
-        - thebestnom
+  recipe-maintainers:
+    - kwilcox
+    - ukaratay
+    - thebestnom

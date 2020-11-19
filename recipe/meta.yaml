@@ -1,53 +1,53 @@
 {% set name = "flower" %}
 {% set version = "0.9.5" %}
-{% set sha256 = "56916d1d2892e25453d6023437427fc04706a1308e0bd4822321da34e1643f9c" %}
+
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/flower-{{ version }}.tar.gz
+  sha256: 56916d1d2892e25453d6023437427fc04706a1308e0bd4822321da34e1643f9c
 
 build:
   number: 0
-  script: python setup.py install --single-version-externally-managed --record=record.txt
   entry_points:
     - flower = flower.__main__:main
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
-  build:
+  host:
+    - pip
     - python
-    - setuptools
-
   run:
     - python
     - setuptools
+    - celery >=4.3.0,<4.4  # [py>=37]
     - celery >=3.1.0  # [py<37]
-    - celery >=4.3.0  # [py>=37]
-    - tornado >=5.0.0,<7.0.0  # [py>=36]
-    - prometheus_client ==0.8.0
+    # vine should be pinned in celery old versions.
+    - vine <5
     - humanize
+    - prometheus_client ==0.8.0
+    - python
     - pytz
+    - tornado >=5.0.0,<6.0.0  # [py<35]
+    - tornado >=5.0.0,<7.0.0  # [py>=35]
 
 test:
   imports:
     - flower
     - flower.api
-    - flower.utils
-    - flower.views
-
+  # pip check fails due to a problem in celery, not flower.
+  # requires:
+  #   - pip
   commands:
+    # - pip check
     - flower --help
-
-  requires:
-    - mock
 
 about:
   home: https://github.com/mher/flower
-  license: BSD 3-Clause
+  license: BSD-3-Clause
   summary: Celery Flower
   license_file: LICENSE
 

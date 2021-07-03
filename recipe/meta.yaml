@@ -23,13 +23,11 @@ requirements:
   run:
     - python
     - setuptools
-    - celery >=4.3.0,<5.0.0
-    # vine should be pinned in celery old versions.
-    - vine ==1.3.0
+    - celery >=5.0.5
     - humanize
-    - prometheus_client ==0.8.0
+    - prometheus_client >=0.8.0
     - pytz
-    - tornado >=5.0.0,<7.0.0  # [py>=35]
+    - tornado >=5.0.0,<7.0.0
 
 test:
   imports:

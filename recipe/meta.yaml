@@ -11,7 +11,7 @@ source:
   sha256: 2e17c4fb55c569508f3bfee7fe41f44b8362d30dbdf77b604a9d9f4740fe8cbd
 
 build:
-  number: 1
+  number: 2
   entry_points:
     - flower = flower.__main__:main
   script: {{ PYTHON }} -m pip install . -vv

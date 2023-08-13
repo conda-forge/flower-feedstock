@@ -1,5 +1,5 @@
 {% set name = "flower" %}
-{% set version = "2.0.0" %}
+{% set version = "2.0.1" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/flower-{{ version }}.tar.gz
-  sha256: 5657785d728a54914256c34fd0551fe2d7152aab08062ebc645bf86b97b8aec5
+  sha256: 5ab717b979530770c16afb48b50d2a98d23c3e9fe39851dcf6bc4d01845a02a0
 
 build:
   number: 0

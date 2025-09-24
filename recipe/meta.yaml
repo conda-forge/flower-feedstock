@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/flower-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/flower-{{ version }}.tar.gz
   sha256: 5ab717b979530770c16afb48b50d2a98d23c3e9fe39851dcf6bc4d01845a02a0
 
 build:
-  number: 1
+  number: 2
   entry_points:
     - flower = flower.__main__:main
   script: {{ PYTHON }} -m pip install . -vv

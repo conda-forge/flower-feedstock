@@ -1,0 +1,66 @@
+schema_version: 1
+
+context:
+  version: "2.2.0"
+
+package:
+  name: flower
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/f/flower/flower-${{ version }}.tar.gz
+  sha256: c4f4751942ff8b5069e6604a136e073b860971b7658859bdc61da1dc17a4bb32
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    # Upstream only registers a celery subcommand (`celery flower`); keep the
+    # standalone `flower` command earlier builds of this package shipped.
+    entry_points:
+      - flower = flower.__main__:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - celery >=5.0.5
+    - humanize
+    - prometheus_client >=0.8.0
+    - pytz
+    - tornado >=6.5.7,<7.0.0
+
+tests:
+  - python:
+      imports:
+        - flower
+        - flower.api
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - flower --help
+
+about:
+  homepage: https://github.com/mher/flower
+  repository: https://github.com/mher/flower
+  documentation: https://flower.readthedocs.io
+  summary: Celery Flower
+  description: |
+    Flower is a web based tool for monitoring and administrating Celery
+    clusters.
+  license: BSD-3-Clause
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - kwilcox
+    - thebestnom
